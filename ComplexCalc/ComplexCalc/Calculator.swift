@@ -26,28 +26,43 @@ class Calculator {
         return lhs / rhs
     }
     
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+    
     func add(_ nums: [Int]) -> Int {
-        var sum = 0
-        for n in nums {
-            sum += n
-        }
-        return sum
+        return nums.reduce(0, +)
     }
     
     func multiply(_ nums: [Int]) -> Int {
-        switch nums.count {
-        case _ where nums.count == 0 :
-            return 0
-        default :
-            var sum = 1
-            for n in nums {
-                sum *= n
-            }
-            return sum
-        }
+        return nums.reduce(1, *)
+    }
+    
+    func count(_ nums: [Int]) -> Int {
+        return nums.count
+    }
+    
+    func avg(_ nums: [Int]) -> Int {
+        return nums.reduce(0, +) / nums.count
+    }
+    
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        return args.reduce(beg, op)
     }
     
     func add(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
         return (lhs.0 + rhs.0, lhs.1 + rhs.1)
+    }
+    
+    func subtract(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        return (lhs.0 - rhs.0, lhs.1 - rhs.1)
+    }
+    
+    func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        return ["x": lhs["x"]! + rhs["x"]!, "y": lhs["y"]! + rhs["y"]!]
+    }
+    
+    func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        return ["x": lhs["x"]! - rhs["x"]!, "y": lhs["y"]! - rhs["y"]!]
     }
 }
